@@ -54,7 +54,7 @@ function playRound(playerSelection,computerSelection){
             else if(playerSelection === "Paper" && computerSelection ==="Rock")
                 result = "win";
 
-            else if(playerSelection === "Paper" && computerSelection ==="Rock")
+            else if(playerSelection === "Paper" && computerSelection ==="Scissors")
                 result = "lost";
         }
 
