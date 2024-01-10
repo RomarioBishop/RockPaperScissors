@@ -1,6 +1,6 @@
 function getComputerChoice(){
     let randomNum = Math.floor((Math.random()*3) + 1);
-    console.log(randomNum, typeof randomNum);
+    // console.log(randomNum, typeof randomNum);
 
     switch (randomNum){
         case 1:
@@ -10,9 +10,9 @@ function getComputerChoice(){
         case 3:
             return "Scissors";
         default:
-            return "An error accoured";            
+            return "An error occurred";            
     }
     
 }
-let test= getComputerChoice();
-alert(test);
+// let test= getComputerChoice();
+// alert(test);
