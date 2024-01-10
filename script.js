@@ -1,53 +1,80 @@
 
-
-let playerSection = prompt(" Enter Either \'Rock\', \'Paper\' OR \'Scissors\' ");
-let computerSelection = getComputerChoice();
-console.log(computerSelection);
-alert(playRound(playerSection,computerSelection));
+console.log(game());
 
 
+function game(){
+    let win=0;
+    let lost=0;
+    let draw=0;
 
-function playRound(playerSection,computerSelection){
+    for(let i=1;i <=5;i++){
+        let playerSelection = prompt(" Enter Either \'Rock\', \'Paper\' OR \'Scissors\' ");
+        let computerSelection = getComputerChoice();
+        console.log(computerSelection);
+        let result= playRound(playerSelection,computerSelection);
+
+        if (result === "win")
+            win++;
+        else if (result === "lost")
+            lost++;
+        else
+            draw++;
+    }
+
+    if(win > lost){
+        return `You have WON! with ${win} wins and ${lost} loses and you drew ${draw} times`;
+    }else if(lost > win){
+        return `You have LOST! with ${win} wins and ${lost} loses and you drew ${draw} times`;
+    }else{
+        return `There no Winner,you ended with ${win} wins and ${lost} loses and you drew ${draw} times`;
+    }
+}
+
+function playRound(playerSelection,computerSelection){
     let result;
-    if (/^rock$/i.test(playerSection) || /^paper$/i.test(playerSection) 
-        || /^scissors$/i.test(playerSection)){
+    if (/^rock$/i.test(playerSelection) || /^paper$/i.test(playerSelection) 
+        || /^scissors$/i.test(playerSelection)){
 
-        playerSection =capitalize(playerSection);
+        playerSelection=capitalize(playerSelection);
 
-        if(playerSection !== computerSelection){
+        if(playerSelection !== computerSelection){
 
-            if(playerSection === "Rock" && computerSelection ==="Scissors")
+            if(playerSelection === "Rock" && computerSelection ==="Scissors")
                 result = "win";
 
-            else if(playerSection === "Rock" && computerSelection ==="Paper")
+            else if(playerSelection === "Rock" && computerSelection ==="Paper")
                 result = "lost";
 
-            else if(playerSection === "Scissors" && computerSelection ==="Paper")
+            else if(playerSelection === "Scissors" && computerSelection ==="Paper")
                 result = "win";
 
-            else if(playerSection === "Scissors" && computerSelection ==="Rock")
+            else if(playerSelection === "Scissors" && computerSelection ==="Rock")
                 result = "lost";
 
-            else if(playerSection === "Paper" && computerSelection ==="Rock")
+            else if(playerSelection === "Paper" && computerSelection ==="Rock")
                 result = "win";
 
-            else if(playerSection === "Paper" && computerSelection ==="Rock")
+            else if(playerSelection === "Paper" && computerSelection ==="Rock")
                 result = "lost";
         }
 
         else{
-            return `It is a Draw, you both chose ${playerSection}`;
+            alert( `It is a Draw, you both chose ${playerSelection}`);
+            return "draw";
         }
 
         if(result === "win"){
-            return `You WIN!, ${playerSection} beats ${computerSelection}`;
+            alert( `You WIN!, ${playerSelection} beats ${computerSelection}`);
+            return "win";
         }
-        else{
-            return `You LOST!, ${computerSelection} beats ${playerSection}`; 
+        else if(result ==="lost"){
+            alert(`You LOST!, ${computerSelection} beats ${playerSelection}`); 
+            return "lost";
         }
     }
     else{
-        return `Please enter either \'Rock\', \'Paper\' OR \'Scissors\'`;
+        console.log(`Please enter either \'Rock\', \'Paper\' OR \'Scissors\'`)
+        return "error";
     }
 
 }
@@ -75,7 +102,7 @@ function capitalize(string){
         let secondPart = string.slice(1);
         return (firstPart.toUpperCase() + secondPart.toLowerCase()); 
     }else{
-        return `Please enter a alid valid word/words, you entered ${string}`;
+        return `Please enter a valid word/words, you entered ${string}`;
     }
 
 }
