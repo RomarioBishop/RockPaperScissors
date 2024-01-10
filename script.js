@@ -1,5 +1,5 @@
 
-console.log(game());
+alert(game());
 
 
 function game(){
